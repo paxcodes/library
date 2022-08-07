@@ -1,4 +1,19 @@
 services:
+  django:
+    build:
+      context: .
+      dockerfile: ./docker/local/django.Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    command: /start
+
+
   db:
     image: postgres:14.4
     environment:
